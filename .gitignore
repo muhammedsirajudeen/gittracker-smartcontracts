@@ -1,2 +1,5 @@
-/target
+/target/** 
 test-ledger
+
+*/target/** 
+target

@@ -608,7 +608,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "gitwrapper_blockchain"
+name = "gitwrapper_blockchain_escrow"
 version = "0.1.0"
 dependencies = [
  "serde",
