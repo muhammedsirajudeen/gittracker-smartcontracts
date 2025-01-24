@@ -13,7 +13,6 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct InstructionData {
-    pub payee_address:String,
     pub amount:u64
 }
 entrypoint!(process_instruction);
@@ -27,7 +26,6 @@ pub fn process_instruction(
         .map_err(|_| solana_program::program_error::ProgramError::InvalidInstructionData)?;
     let payment_details:InstructionData=serde_json::from_str(json_str).map_err(|_|solana_program::program_error::ProgramError::InvalidInstructionData)?;
     msg!("Amount :{}", payment_details.amount);
-    msg!("Payee address :{}",payment_details.payee_address);
     let accounts_iter=&mut accounts.iter();
     let payer_account=next_account_info(accounts_iter)?;
     let escrow_account=next_account_info(accounts_iter)?;
@@ -57,7 +55,7 @@ pub fn process_instruction(
          &transfer_instruction,
          &[payer_account.clone(),escrow_account.clone()],
      )?;
-     msg!("Transfer successfully completed");
+     msg!("Transfer successfully completed here");
 
     Ok(())
 
