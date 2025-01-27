@@ -6,7 +6,6 @@ use solana_program::{
     entrypoint::ProgramResult,
     pubkey::Pubkey,
     msg,
-    system_instruction,
 };
 use serde::{Deserialize, Serialize};
 
@@ -47,7 +46,7 @@ pub fn process_instruction(
      let transfer_instruction = solana_program::system_instruction::transfer(
          &payer_account.key, 
          &escrow_account.key, 
-         1000000000,
+         payment_details.amount,
      );
 
      // Invoke the transfer instruction
